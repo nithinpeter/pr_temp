@@ -11,7 +11,7 @@ jobs:
     steps:
       - name: Check if all tasks are completed
         run: |
-          if grep -q "\- \[ \]" "${{ github.event.pull_request.body }}"; then
+          if grep -q "\[ \]" <<< "${{ github.event.pull_request.body }}"; then
             echo "❌ Not all tasks are completed in the PR description."
             exit 1
           else
