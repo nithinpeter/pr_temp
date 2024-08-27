@@ -7,11 +7,13 @@ on:
 jobs:
   check-tasks:
     runs-on: ubuntu-latest
-    - name: Check if all tasks are completed
-      run: |
-        if grep -q "\- \[ \]" "${{ github.event.pull_request.body }}"; then
-          echo "❌ Not all tasks are completed in the PR description."
-          exit 1
-        else
-          echo "✅ All tasks are completed in the PR description."
-        fi
+    name: Check if all tasks are completed
+    steps:
+      - name: Check if all tasks are completed
+        run: |
+          if grep -q "\- \[ \]" "${{ github.event.pull_request.body }}"; then
+            echo "❌ Not all tasks are completed in the PR description."
+            exit 1
+          else
+            echo "✅ All tasks are completed in the PR description."
+          fi
